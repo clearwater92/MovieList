@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
 
 class GoogleAuth extends Component {
-  state = { isSignedIn: null };
+  //state = { isSignedIn: null };
 
   // 2.0 토큰을 얻기 위해 클라이언트에서 사용해야 할 객체는
   // gapi.auth2와 gapi.client 객체이다. 이 객체들은 유저 권한을
@@ -18,15 +18,20 @@ class GoogleAuth extends Component {
         })
         .then(() => {
           this.auth = window.gapi.auth2.getAuthInstance();
-          console.log(this.auth);
-          this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+          //this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+          this.onAuthChange(this.auth.isSignedIn.get());
           this.auth.isSignedIn.listen(this.onAuthChange);
         });
     });
   }
 
-  onAuthChange = () => {
-    this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+  onAuthChange = (isSignedIn) => {
+    if (isSignedIn) {
+      this.props.signIn(this.auth.currentUser.get().getId());
+    } else {
+      this.props.signOut();
+    }
+    //this.setState({ isSignedIn: this.auth.isSignedIn.get() });
   };
 
   onSignIn = () => {
@@ -38,9 +43,9 @@ class GoogleAuth extends Component {
   };
 
   renderAuthButton() {
-    if (this.state.isSignedIn === null) {
+    if (this.props.isSignedIn === null) {
       return null;
-    } else if (this.state.isSignedIn) {
+    } else if (this.props.isSignedIn) {
       return <button onClick={this.onSignOut}>Sign Out</button>;
     } else {
       return <button onClick={this.onSignIn}>Sign In with Google</button>;
@@ -52,6 +57,7 @@ class GoogleAuth extends Component {
   }
 }
 
+// 말 그대로 (스토어 안에 들어 있는) state를 props에 어떻게 엮을지 정하는 함수입니다.
 const mapStateToProps = (state) => {
   return { isSignedIn: state.auth.isSignedIn };
 };
