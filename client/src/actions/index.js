@@ -1,4 +1,5 @@
 import movies from '../apis/movies';
+import history from '../history';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -32,13 +33,35 @@ export const signOut = () => {
 
 export const createMovie = (formValues) => {
   return async (dispatch, getState) => {
-    const {userId} = getState().auth;
+    const { userId } = getState().auth;
     const response = await movies.post('/movies', { ...formValues, userId });
-    dispatch({ type: CREATE_MOVIE, payload: response.data })
+    dispatch({ type: CREATE_MOVIE, payload: response.data });
+    history.push('/');
   };
 };
 
 export const fetchMovies = () => async (dispatch) => {
   const response = await movies.get('/movies');
   dispatch({ type: FETCH_MOVIES, payload: response.data });
+};
+
+export const fetchMovie = (id) => {
+  return async (dispatch) => {
+    const response = await movies.get(`/movies/${id}`);
+    dispatch({ type: FETCH_MOVIE, payload: response.data });
+  };
+};
+
+export const editMovie = (id, formValues) => {
+  return async (dispatch) => {
+    const response = await movies.put(`/movies/${id}`, formValues);
+    dispatch({ type: EDIT_MOVIE, payload: response.data });
+  };
+};
+
+export const deleteStream = (id) => {
+  return async (dispatch) => {
+    await movies.delete(`/movies/${id}`);
+    dispatch({ type: DELETE_MOVIE, payload: id });
+  };
 };

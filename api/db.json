@@ -3,11 +3,13 @@
     {
       "title": "12 Years a Slave",
       "description": "12 Years a Slave is a 2013 biographical period-drama film and an adaptation of the 1853 slave memoir Twelve Years a Slave by Solomon Northup, a New York State-born free African-American man who was kidnapped in Washington, D.C., by two conmen in 1841 and sold into slavery.",
+      "userId": "100790579069617845450",
       "id": 1
     },
     {
       "title": "The Hurt Locker",
       "description": "The Hurt Locker is a 2008 American war thriller film directed by Kathryn Bigelow and written by Mark Boal.",
+      "userId": "100790579069617845450",
       "id": 2
     },
     {
@@ -29,28 +31,10 @@
       "id": 5
     },
     {
-      "title": "5",
-      "description": "5",
+      "title": "Bloody Sunday",
+      "description": "Bloody Sunday is a 2002 British-Irish film written and directed by Paul Greengrass based around the 1972 \"Bloody Sunday\" shootings in Derry, Northern Ireland.",
       "userId": "100790579069617845450",
       "id": 6
-    },
-    {
-      "title": "6",
-      "description": "6",
-      "userId": "100790579069617845450",
-      "id": 7
-    },
-    {
-      "title": "7",
-      "description": "7",
-      "userId": "100790579069617845450",
-      "id": 8
-    },
-    {
-      "title": "8",
-      "description": "8",
-      "userId": "100790579069617845450",
-      "id": 9
     }
   ]
 }

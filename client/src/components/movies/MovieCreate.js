@@ -46,7 +46,7 @@ class MovieCreate extends Component {
   render() {
     return (
       <form className="mt-8" onSubmit={this.props.handleSubmit(this.submit)}>
-        <div class="mx-auto max-w-lg ">
+        <div className="mx-auto max-w-lg ">
           <Field
             name="title"
             component={this.renderInput}
