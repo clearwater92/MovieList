@@ -54,8 +54,10 @@ export const fetchMovie = (id) => {
 
 export const editMovie = (id, formValues) => {
   return async (dispatch) => {
-    const response = await movies.put(`/movies/${id}`, formValues);
+    const response = await movies.patch(`/movies/${id}`, formValues);
+    console.log('action creator edit', formValues);
     dispatch({ type: EDIT_MOVIE, payload: response.data });
+    history.push('/');
   };
 };
 

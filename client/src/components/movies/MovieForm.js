@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import '../../styles/main.css';
-import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { createMovie } from '../../actions';
 
 // const MovieCreate = () => {
 //   return <div>MovieCreate</div>;
 // };
-class MovieCreate extends Component {
+class MovieForm extends Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -38,10 +36,10 @@ class MovieCreate extends Component {
       </div>
     );
   };
-  
+
   submit = (formValues) => {
-    console.log(this.props)
-    this.props.createMovie(formValues);
+    console.log(this.props);
+    this.props.submit(formValues);
   };
 
   render() {
@@ -92,9 +90,8 @@ const validate = (formValues) => {
 
 // reduxForm() 설정 객체를 취해서 새로운 함수를 반환합니다.
 // form 컴포넌트를 wrapping 하고 사용자 상호작용을 바인딩하여 Redux 발동합니다.
-const formWrapped = reduxForm({
-  form: 'movieCreate',
-  validate,
-})(MovieCreate);
 
-export default connect(null, { createMovie })(formWrapped);
+export default reduxForm({
+	form: 'movieForm',
+	validate
+})(MovieForm);
